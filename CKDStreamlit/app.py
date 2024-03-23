@@ -8,7 +8,7 @@ import plotly.express as px
 
 
 ### Loading saved models
-loaded_model = pickle.load(open('CKD/CKDStreamlit/decision_tree_ckd.sav', 'rb'))
+loaded_model = pickle.load(open('CKDStreamlit/decision_tree_ckd.sav', 'rb'))
 
 ###################################################
 ## Application Header
