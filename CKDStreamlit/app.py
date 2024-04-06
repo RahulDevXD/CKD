@@ -86,24 +86,17 @@ if submit:
       predDf = pd.DataFrame({'Class': ['Non CKD', 'CKD'], 'pred': [1-pred,pred]})
 
 
-      #### Adding pie chart
-      fig = px.pie(predDf, values='pred', names='Class', color='Class', color_discrete_map={'CKD':'rgb(253, 66, 61', 'Non CKD':'rgb(146, 208, 80)'}, title = 'CKD Prediction (Probability of CKD vs Not):')
-      fig.update_layout(
-      autosize=False,
-      width=350,
-      height=350,
-      legend=dict(
-            orientation="h",
-      yanchor="bottom",
-      y=-0.2,
-      xanchor="left",
-      x=0.01
-      )
-      )
-      col1.plotly_chart(fig)
+      #### Adding CKD Text
+      col1.markdown('''<b>Does Patient has High Chances of CKD?</b>''', unsafe_allow_html=True)
+      if pred <= 0.5:
+        col1.markdown('''<div style="color: green; text-align: center; font-size: 100px;"><h3 style="color: green; text-align: center; font-size: 100px;">No</h3></div>''', unsafe_allow_html=True)
+      else:
+        col1.markdown('''<div style="color: red; text-align: center; font-size: 100px;"><h3 style="color: red; text-align: center; font-size: 100px;">Yes</h3></div>''', unsafe_allow_html=True)
+      
 
       #### Adding Imprtant Features
-      fig = px.bar(x=finalDf['Final_Score'], y=finalDf['Feature'], color_discrete_sequence=['#F7C0BB'], title = 'Key Factors Driving Patient’s CKD Behaviour:')
+      col3.markdown('''<b>Key Factors Driving Patient’s CKD Behaviour:</b>''', unsafe_allow_html=True)
+      fig = px.bar(x=finalDf['Final_Score'], y=finalDf['Feature'], color_discrete_sequence=['#F7C0BB'])
       col3.plotly_chart(fig)
 
       #### Priting message
